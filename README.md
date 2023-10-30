@@ -12,11 +12,11 @@
 [Slides](https://docs.google.com/presentation/d/1amX-0ldebGgqnS9o0RDahwf0Znf59SYq06b_S-MdsrI/edit?usp=sharing)
 
 ## 🤝 Our Team
-* **[Andrew Shakespeare](https://github.com/shakey0)**
-* **[Benedict Valuks](https://github.com/BValuks)**
-* **[Carolina Nogueira](https://github.com/caronog)**
-* **[Denise Chan](https://github.com/elliepriestley)**
-* **[Zubayda Hagi](https://github.com/Zhagi)**
+* [Andrew Shakespeare](https://github.com/shakey0)
+* [Benedict Valuks](https://github.com/BValuks)
+* [Carolina Nogueira](https://github.com/caronog)
+* [Denise Chan](https://github.com/denisecodes)
+* [Zubayda Hagi](https://github.com/Zhagi)
 
 ## 🏡 The scenario
 
@@ -83,7 +83,26 @@ This would significantly decrease the amount of requests going directly to the H
 * Set up Time to Live (TTL) for 2 mins, allowing data to be stored for up to 2 mins in the cache before expiring and making a new requests to the HOSP server
 <br>
 
-The following diagram shows our infrastructure after setting up a two Nginx Reverse Proxy Servers and a CloudFront
+The following diagram shows our infrastructure after setting up a two Nginx Reverse Proxy Servers and a CloudFront.
 
 ![Diagram that shows Cloud Front and Nginx Servers being used to increase the reliability of the system](images/caching_nginx_diagram.png)
+
+### Results
+
+The HOSP's server success rate on the first 4 days<br>
+
+![An image showing the HOSP server's improved reliability after 4 days of work](images/improved_reliability.png)
+
+The HOSP's server consistent success rate of 99.95% and above during the last half of the project<br>
+
+![An image showing the HOSP server's consistent reliablity during the last half of the project](images/final_reliability.png)
+
+## Mitigating Security Breaches
+
+During the project, we faced security breaches where people with unauthorised access to the HOSP server were able to leave patient notes.
+
+To tighten up the security of our infrastructure, we decided to complete one of the improvement tickets - Make the service available via HTTPS, given all traffic is HTTP.
+
+
+
 
