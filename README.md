@@ -81,7 +81,6 @@ This would significantly decrease the amount of requests going directly to the H
 * Create a CloudFront Distribution
 * Set up the LoadBalancer as the origin (where traffic is coming from)
 * Set up Time to Live (TTL) for 2 mins, allowing data to be stored for up to 2 mins in the cache before expiring and making a new requests to the HOSP server
-<br>
 
 The following diagram shows our infrastructure after setting up a two Nginx Reverse Proxy Servers and a CloudFront.
 
