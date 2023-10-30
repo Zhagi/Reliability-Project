@@ -136,4 +136,4 @@ In order to get the data from the hospitals endpoint, we had to code a scraper.
 
 We found converting the response into a Data Frame using the pandas library an easy method and then saving it to a csv locally afterwards. 
 
-You can find the scraper and the hospitals data in a csv file [here]()
+You can find the Jupyter Notebook to scrap the data and the hospitals.csv [here](https://github.com/denisecodes/Reliability-Project/tree/main/scrap_hosp_data)
