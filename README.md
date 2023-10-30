@@ -136,4 +136,26 @@ In order to get the data from the hospitals endpoint, we had to code a scraper.
 
 We found converting the response into a Data Frame using the pandas library an easy method and then saving it to a csv locally afterwards. 
 
-You can find the Jupyter Notebook to scrap the data and the hospitals.csv [here](https://github.com/denisecodes/Reliability-Project/tree/main/scrap_hosp_data)
+You can find the Jupyter Notebook to scrap the data and the output file: hospitals.csv [here](https://github.com/denisecodes/Reliability-Project/tree/main/scrap_hosp_data)
+
+## Setting a NoSQL Database: DynamoDB
+
+We decided to use AWS's NoSQL database system DynamoDB to upload the data we had scraped from the hospitals endpoint. 
+
+#### Set Up
+* Create an S3 bucket to store hospitals.csv
+* Create a DynamoDB database and created a table to link to the S3 bucket
+
+<br>
+
+![An image showing our hospitals table in DynamoDB on AWS](images/dynamodb.png)
+
+<!-- ## 🏨 Our New Infrastructure 
+
+* Set up API Gateway and connected it to a separate CloudFront as a development environment
+* Created the following routes in an API Gateway according to the API documentation for the legacy (HOSP) server to migrate the Hospitals endpoint:
+    * Get all hospitals - /hospitals (GET)
+    * Get hospital by id - /hospitals/{id} (GET)
+    * Create hospital - /hospitals (POST)
+    * Update hospital - /hospitals/{id} (PATCH)
+    * Delete hospital - /hospitals/{id} (DELETE) -->
