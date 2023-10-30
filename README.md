@@ -59,7 +59,7 @@ Using a retry mechanism would allow for 5XX status codes to be go through the HO
 This would increase the success rate of requests and improve the reliability of the system.
 
 #### Set Up 
-* Created an Nginx Web Server on an EC2 Instance
+* Create an Nginx Web Server on an EC2 Instance
 * Set up a Reverse Proxy on the Nginx server
     * Allowed failed requests to retry up to 5 times
     * 3 seconds interval between each retry
@@ -101,8 +101,39 @@ The HOSP's server consistent success rate of 99.95% and above during the last ha
 
 During the project, we faced security breaches where people with unauthorised access to the HOSP server were able to leave patient notes.
 
-To tighten up the security of our infrastructure, we decided to complete one of the improvement tickets - Make the service available via HTTPS, given all traffic is HTTP.
+We decided to tighten up the security of our infrastructure and complete one of the improvement tickets - make the service available via HTTPS, given all traffic is HTTP.
 
+#### Set Up 
+* Add HTTPS decryption at the Load Balancer
+* Attach a custom HTTP header at the CloudFront
+* Add a rule to the Load Balancer to only accept traffic with the custom header set up on the CloudFront
+* Tighten security group rules for Nginx Servers and the Load Balancer
+<br>
 
+![An image showing how we secured the network to ensure no security breaches](images/security_diagram.png)
 
+## 💨 Migrating the system
 
+At the end of the first week, we received news that the vendor running the upstream system (HOSP) is filing for bankruptcy.
+
+![A message from the vendor saying the upstream system is filing for bankruptcy](images/bankruptcy.png)
+
+After this event was reported, our team decided to work on migrating the system given we have achieved our reliability goals:
+* 99% success rate for user requests
+* No security breaches 
+
+While we were brainstorming ideas to migrate the system using a Miro board, we came to a conclusion to do the following:
+* Use Lambdas to deal with user requests
+* Use a NoSQL database to store the data
+* Migrate the Hospitals endpoint first
+* Code a scraper to get the data from HOSP
+
+![A miro board showing brainstorming ideas to migrate the HOSP system](images/hosp_migration_miro_board.png)
+
+## 📊 Data Scraping
+
+In order to get the data from the hospitals endpoint, we had to code a scraper. 
+
+We found converting the response into a Data Frame using the pandas library an easy method and then saving it to a csv locally afterwards. 
+
+You can find the scraper and the hospitals data in a csv file [here]()
