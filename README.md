@@ -18,7 +18,7 @@
 * **[Denise Chan](https://github.com/elliepriestley)**
 * **[Zubayda Hagi](https://github.com/Zhagi)**
 
-## ❓ The Problem
+## 🏡 The scenario
 
 We were tasked to work for a veterinary hospital client's HOSP system where we were asked to:
 * Preserve the functionality of the system
@@ -27,10 +27,9 @@ We were tasked to work for a veterinary hospital client's HOSP system where we w
 
 ![Vet Diagram](images/vet_diagram.png)
 
-## Constraints and Access
-* **We only had access to the Load Balancer**
+## ⛔️ Constraints and Access
+* We only had access to the Load Balancer
 * We could submit tickets to HOSP or Corporate IT
-
 
 ## 🎯 Our Reliability Target
 
@@ -60,7 +59,7 @@ Using a retry mechanism would allow for 5XX status codes to be go through the HO
 This would increase the success rate of requests and improve the reliability of the system.
 
 #### Set Up 
-* Created Nginx Web Server on an EC2 Instance
+* Created an Nginx Web Server on an EC2 Instance
 * Set up a Reverse Proxy on the Nginx server
     * Allowed failed requests to retry up to 5 times
     * 3 seconds interval between each retry
@@ -70,5 +69,21 @@ This would increase the success rate of requests and improve the reliability of 
 ![Nginx Configuration](images/nginx_config.png)
 
 
+### 2. Caching
 
+![Caching Diagram](images/caching.png)
+
+Using caching would allow us to store data closer to the user so users can access the data faster. 
+
+This would significantly decrease the amount of requests going directly to the HOSP server as data can be retrieved from the cache instead of the API gateway for some requests, improving the reliability of the system.
+
+#### Set Up 
+* Create a CloudFront Distribution
+* Set up the LoadBalancer as the origin (where traffic is coming from)
+* Set up Time to Live (TTL) for 2 mins, allowing data to be stored for up to 2 mins in the cache before expiring and making a new requests to the HOSP server
+<br>
+
+The following diagram shows our infrastructure after setting up a two Nginx Reverse Proxy Servers and a CloudFront
+
+![Diagram that shows Cloud Front and Nginx Servers being used to increase the reliability of the system](images/caching_nginx_diagram.png)
 
