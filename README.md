@@ -138,7 +138,7 @@ We found converting the response into a Data Frame using the pandas library an e
 
 You can find the Jupyter Notebook to scrap the data and the output file: hospitals.csv [here](https://github.com/denisecodes/Reliability-Project/tree/main/scrap_hosp_data)
 
-## 💽 Setting a NoSQL Database: DynamoDB
+## 💽 Setting up a NoSQL Database: DynamoDB
 
 We decided to use AWS's NoSQL database system DynamoDB to upload the data we had scraped from the hospitals endpoint. 
 
