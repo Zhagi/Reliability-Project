@@ -6,7 +6,7 @@
   This project is a Reliability Project, completed as part of Makers Academy Bootcamp during Week 7 & 8 of the Cloud/DevOps Engineering stream.
 </p>
 
-## 🎥 Demo Day oand Presentation
+## 🎥 Demo Day and Presentation
 
 [Demo Day Video](https://youtu.be/XLbIx-UmkZY?si=G-QV16Xj--54PG45&t=2400)<br>
 [Slides](https://docs.google.com/presentation/d/1amX-0ldebGgqnS9o0RDahwf0Znf59SYq06b_S-MdsrI/edit?usp=sharing)
@@ -36,19 +36,19 @@ We were tasked to work for a veterinary hospital client's HOSP system where we w
 * The system responds to 99% of user requests successfully
 * Ensure no security breaches
 
-## Getting Visibility 
+## 👀 Getting Visibility 
 
 * Set up an S3 bucket to get logs from the Load Balancer
 * Use Athena on AWS to query the logs
 
 ![Load Balancer Logs](images/setting_up_logs.png)
 
-## Findings
+## 🔎 Findings
 
 * Saw the we had a fair amount of 5XX status codes
 * Varying response times from 2 to 20 seconds
 
-## Improving the Reliability of the System
+## ⬆️ Improving the Reliability of the System
 
 ### 1. Retry Mechanism
 
@@ -87,7 +87,7 @@ The following diagram shows our infrastructure after setting up a two Nginx Reve
 
 ![Diagram that shows Cloud Front and Nginx Servers being used to increase the reliability of the system](images/caching_nginx_diagram.png)
 
-### Results
+### 📈 Results
 
 The HOSP's server success rate on the first 4 days<br>
 
@@ -97,7 +97,7 @@ The HOSP's server consistent success rate of 99.95% and above during the last ha
 
 ![An image showing the HOSP server's consistent reliablity during the last half of the project](images/final_reliability.png)
 
-## Mitigating Security Breaches
+## 🔒 Mitigating Security Breaches
 
 During the project, we faced security breaches where people with unauthorised access to the HOSP server were able to leave patient notes.
 
