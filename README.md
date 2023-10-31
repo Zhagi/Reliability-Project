@@ -25,7 +25,7 @@ We were tasked to work for a veterinary hospital client's HOSP system where we w
 * Increase the reliability of the system and ensure no security breaches
 * Implement some improvements to the system
 
-![Vet Diagram](images/vet_diagram.png)
+![Vet Diagram](assets/vet_diagram.png)
 
 ## ⛔️ Constraints and Access
 * We only had access to the Load Balancer
@@ -41,7 +41,7 @@ We were tasked to work for a veterinary hospital client's HOSP system where we w
 * Set up an S3 bucket to get logs from the Load Balancer
 * Use Athena on AWS to query the logs
 
-![Load Balancer Logs](images/setting_up_logs.png)
+![Load Balancer Logs](assets/setting_up_logs.png)
 
 ## 🔎 Findings
 
@@ -52,7 +52,7 @@ We were tasked to work for a veterinary hospital client's HOSP system where we w
 
 ### 1. Retry Mechanism
 
-![Reverse Proxy Diagram](images/reverse_proxy_server.png)
+![Reverse Proxy Diagram](assets/reverse_proxy_server.png)
 
 Using a retry mechanism would allow for 5XX status codes to be go through the HOSP server up to a certain number of time, rather than just once.
 
@@ -66,12 +66,12 @@ This would increase the success rate of requests and improve the reliability of 
 
 <br>  
 
-![Nginx Configuration](images/nginx_config.png)
+![Nginx Configuration](assets/nginx_config.png)
 
 
 ### 2. Caching
 
-![Caching Diagram](images/caching.png)
+![Caching Diagram](assets/caching.png)
 
 Using caching would allow us to store data closer to the user so users can access the data faster. 
 
@@ -84,17 +84,17 @@ This would significantly decrease the amount of requests going directly to the H
 
 The following diagram shows our infrastructure after setting up a two Nginx Reverse Proxy Servers and a CloudFront.
 
-![Diagram that shows Cloud Front and Nginx Servers being used to increase the reliability of the system](images/caching_nginx_diagram.png)
+![Diagram that shows Cloud Front and Nginx Servers being used to increase the reliability of the system](assets/caching_nginx_diagram.png)
 
 ### 📈 Results
 
 The HOSP's server success rate on the first 4 days<br>
 
-![An image showing the HOSP server's improved reliability after 4 days of work](images/improved_reliability.png)
+![An image showing the HOSP server's improved reliability after 4 days of work](assets/improved_reliability.png)
 
 The HOSP's server consistent success rate of 99.95% and above during the last half of the project<br>
 
-![An image showing the HOSP server's consistent reliablity during the last half of the project](images/final_reliability.png)
+![An image showing the HOSP server's consistent reliablity during the last half of the project](assets/final_reliability.png)
 
 ## 🔒 Mitigating Security Breaches
 
@@ -109,13 +109,13 @@ We decided to tighten up the security of our infrastructure and complete one of 
 * Tighten security group rules for Nginx Servers and the Load Balancer
 <br>
 
-![An image showing how we secured the network to ensure no security breaches](images/security_diagram.png)
+![An image showing how we secured the network to ensure no security breaches](assets/security_diagram.png)
 
 ## 💨 Migrating the system
 
 At the end of the first week, we received news that the vendor running the upstream system (HOSP) is filing for bankruptcy.
 
-![A message from the vendor saying the upstream system is filing for bankruptcy](images/bankruptcy.png)
+![A message from the vendor saying the upstream system is filing for bankruptcy](assets/bankruptcy.png)
 
 After this event was reported, our team decided to work on migrating the system given we have achieved our reliability goals:
 * 99% success rate for user requests
@@ -127,7 +127,7 @@ While we were brainstorming ideas to migrate the system using a Miro board, we c
 * Migrate the Hospitals endpoint first
 * Code a scraper to get the data from HOSP
 
-![A miro board showing brainstorming ideas to migrate the HOSP system](images/hosp_migration_miro_board.png)
+![A miro board showing brainstorming ideas to migrate the HOSP system](assets/hosp_migration_miro_board.png)
 
 ## 📊 Data Scraping
 
@@ -147,7 +147,7 @@ We decided to use AWS's NoSQL database system DynamoDB to upload the data we had
 
 <br>
 
-![An image showing our hospitals table in DynamoDB on AWS](images/dynamodb.png)
+![An image showing our hospitals table in DynamoDB on AWS](assets/dynamodb.png)
 
 <!-- ## 🏨 Our New Infrastructure 
 
