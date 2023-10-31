@@ -58,7 +58,7 @@ Using a retry mechanism would allow for 5XX status codes to be go through the HO
 
 This would increase the success rate of requests and improve the reliability of the system.
 
-#### Set up
+### Set up
 * Create an Nginx Web Server on an EC2 Instance
 * Set up a Reverse Proxy on the Nginx server
     * Allowed failed requests to retry up to 5 times
@@ -77,7 +77,7 @@ Using caching would allow us to store data closer to the user so users can acces
 
 This would significantly decrease the amount of requests going directly to the HOSP server as data can be retrieved from the cache instead of the API gateway for some requests, improving the reliability of the system.
 
-#### Set Up 
+### Set Up 
 * Create a CloudFront Distribution
 * Set up the LoadBalancer as the origin (where traffic is coming from)
 * Set up Time to Live (TTL) for 2 mins, allowing data to be stored for up to 2 mins in the cache before expiring and making a new requests to the HOSP server
@@ -102,7 +102,7 @@ During the project, we faced security breaches where people with unauthorised ac
 
 We decided to tighten up the security of our infrastructure and complete one of the improvement tickets - make the service available via HTTPS, given all traffic is HTTP.
 
-#### Set Up 
+### Set Up 
 * Add HTTPS decryption at the Load Balancer
 * Attach a custom HTTP header at the CloudFront
 * Add a rule to the Load Balancer to only accept traffic with the custom header set up on the CloudFront
@@ -141,7 +141,7 @@ You can find the Jupyter Notebook to scrap the data and the output file: hospita
 
 We decided to use AWS's NoSQL database system DynamoDB to upload the data we had scraped from the hospitals endpoint. 
 
-#### Set Up
+### Set Up
 * Create an S3 bucket to store hospitals.csv
 * Create a DynamoDB database and created a table to link to the S3 bucket
 
@@ -157,7 +157,7 @@ In order to use Lambdas, we needed an API Gateway to set up endpoints to run Lam
 
 Before migrating the system, we set up a new CloudFront to act as  a development environment to ensure the new system can auto scale and handle any increase in traffic.
 
-#### Set up
+### Set up
 * Create an API Gateway and connect it to a separate CloudFront, acting as a development environment
 * Created the following routes in an API Gateway according to the API documentation for the legacy (HOSP) server to migrate the Hospitals endpoint:
     * Get all hospitals - /hospitals (GET)
@@ -192,7 +192,7 @@ Our API Gateway is able requests much more quickly from 4763ms on average before
 
 In the legacy system, every request needed an authorisation header and so we needed to implement this in our new system.
 
-#### Set up
+### Set up
 * Create a Lambda Function to authenticate users
 * Set up a New CloudFront and API Gateway(Frontend) to direct users to the new Lambda Function
 * Create a new table in DynamnoDB to store Staff Credentials 
@@ -235,3 +235,7 @@ During the Makers course, we were taught how to work in an agile way and we adop
 
 ![An image showing how we worked in an agile way with trello board, miro board, retros and pair programming](assets/agile_methodology.png)
 
+
+## 🫶 Special Thanks
+
+Shoutouts to the wonderful team at [Makers](https://www.makers.tech/) for teaching us so much in the world of Cloud and DevOps in just 8 weeks. Our coach [Leo](https://github.com/leoht) for guiding us throughout this final project!
