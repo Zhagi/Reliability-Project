@@ -182,10 +182,10 @@ You can see in the speed comparison below that with our new system, the performa
 
 Our API Gateway is able requests much more quickly from 4763ms on average before (legacy system) to 53ms (new system)! 
 
-Legacy System
+<b>Legacy System</b>
 ![An image showing an average of 4763ms using the Legacy System](assets/legacy_system_results.png)
 
-AWS API Gateway
+<b>AWS API Gateway</b>
 ![An image showing an average of 53ms using the API Gateway](assets/api_gateway_results.png)
 
 ## 🔑 New Authentication Architecture
@@ -200,5 +200,38 @@ In the legacy system, every request needed an authorisation header and so we nee
 
 ![An image showing an average of 53ms using the API Gateway](assets/authentication_system_diagram.png)
 
-
 ## 🔐 Authentication Lambda
+
+This was the most difficult Lambda Function we had to write and we ran into many bugs along the way and had to add new bits to our infrastructure. Although we couldn't finish this in the end as the return response format was not correct, we are confident we would have completed this if we had a few more days. 
+
+### The steps behind the code
+1. Checks auth_header and retrieves & decodes staff credentials from DynamoDB.
+2. Validates auth_header against known credentials; mismatches yield 'Invalid credentials' error.
+3. On successful validation, forwards request to secondary API Gateway via CloudFront.
+4. Returns the response from the API Gateway to the client.
+
+You can find the code for the Authentication Lambda [here](https://github.com/denisecodes/Reliability-Project/blob/main/lambda_functions/authentication.py)
+
+### Flow Diagram of the Authentication System
+
+![An image showing the flow diagram of the authentication system](assets/flow_diagram_authentication_system.png)
+
+## Our Migration System
+
+Below is a diagram of the infrastructure to complete the full migration of the legacy system to our new system. Eventually once we have all staff credentials stored in DynamoDB we would completely eliminate the old system, deleting the Load Balancer, Nginx Servers and the legacy HOSP server. 
+
+![An image showing how our migration system would work](assets/final_migration_system.png)
+
+## 👯‍♀️ Agile Methodology
+
+During the Makers course, we were taught how to work in an agile way and we adopted this in our final project. 
+
+### What we did
+* Trello board for task management
+* Daily communication (stand-ups)
+* End of the week reflection (retros)
+* Miro board for brainstorming
+* Pairing programming
+
+![An image showing how we worked in an agile way with trello board, miro board, retros and pair programming](assets/agile_methodology.png)
+
