@@ -6,9 +6,9 @@
   This project is a Reliability Project, completed as part of Makers Academy Bootcamp during Week 7 & 8 of the Cloud/DevOps Engineering stream.
 </p>
 
-## 🎥 Demo Day and Presentation
+## 🎥 Demo Day Video and Presentation
 
-[Demo Day Video](https://youtu.be/XLbIx-UmkZY?si=G-QV16Xj--54PG45&t=2400)<br>
+[Video](https://youtu.be/XLbIx-UmkZY?si=G-QV16Xj--54PG45&t=2400)<br>
 [Slides](https://docs.google.com/presentation/d/1amX-0ldebGgqnS9o0RDahwf0Znf59SYq06b_S-MdsrI/edit?usp=sharing)
 
 ## 🤝 Our Team
@@ -58,7 +58,7 @@ Using a retry mechanism would allow for 5XX status codes to be go through the HO
 
 This would increase the success rate of requests and improve the reliability of the system.
 
-#### Set Up 
+#### Set up
 * Create an Nginx Web Server on an EC2 Instance
 * Set up a Reverse Proxy on the Nginx server
     * Allowed failed requests to retry up to 5 times
@@ -145,16 +145,60 @@ We decided to use AWS's NoSQL database system DynamoDB to upload the data we had
 * Create an S3 bucket to store hospitals.csv
 * Create a DynamoDB database and created a table to link to the S3 bucket
 
-<br>
-
 ![An image showing our hospitals table in DynamoDB on AWS](assets/dynamodb.png)
 
-<!-- ## 🏨 Our New Infrastructure 
+In order to create unique identifier for each hospital when a new hospital is added, we created a hospital counter column which increments by 1 every time a new item is added.
 
-* Set up API Gateway and connected it to a separate CloudFront as a development environment
+![An image showing the hospital counter incrementing by 1 to create unique ids for each hospital](assets/unique_id.png)
+
+## 🏨 Our New Infrastructure 
+
+In order to use Lambdas, we needed an API Gateway to set up endpoints to run Lambda Functions base on a user's request and connect to our DynamoDB database.
+
+Before migrating the system, we set up a new CloudFront to act as  a development environment to ensure the new system can auto scale and handle any increase in traffic.
+
+#### Set up
+* Create an API Gateway and connect it to a separate CloudFront, acting as a development environment
 * Created the following routes in an API Gateway according to the API documentation for the legacy (HOSP) server to migrate the Hospitals endpoint:
     * Get all hospitals - /hospitals (GET)
     * Get hospital by id - /hospitals/{id} (GET)
     * Create hospital - /hospitals (POST)
     * Update hospital - /hospitals/{id} (PATCH)
-    * Delete hospital - /hospitals/{id} (DELETE) -->
+    * Delete hospital - /hospitals/{id} (DELETE)
+
+![An image showing how our development CloudFront forwards request to the API Gateway then running Lambda Functions, connected to DynamoDB](assets/cloudfront_api_gateway_diagram.png)
+
+## 🐑 Lambdas
+
+We decided to use Lambdas as they are easy to run code, cheap and auto scales, meaning it can handle any increase in traffic easily.
+
+Also it's serverless architecture which means we don't have to manage a server.
+
+You can find our lambda functions [here](https://github.com/denisecodes/Reliability-Project/tree/main/lambda_functions)
+
+## Speed comparison: Legacy System vs AWS API Gateway
+
+You can see in the speed comparison below that with our new system, the performance dramatically increased. 
+
+Our API Gateway is able requests much more quickly from 4763ms on average before (legacy system) to 53ms (new system)! 
+
+Legacy System
+![An image showing an average of 4763ms using the Legacy System](assets/legacy_system_results.png)
+
+AWS API Gateway
+![An image showing an average of 53ms using the API Gateway](assets/api_gateway_results.png)
+
+## 🔑 New Authentication Architecture
+
+In the legacy system, every request needed an authorisation header and so we needed to implement this in our new system.
+
+#### Set up
+* Create a Lambda Function to authenticate users
+* Set up a New CloudFront and API Gateway(Frontend) to direct users to the new Lambda Function
+* Create a new table in DynamnoDB to store Staff Credentials 
+* Connect the Authentication Lambda Function to go to another CloudFront(Backend) in order to be passed through to our API Gateway
+
+![An image showing an average of 53ms using the API Gateway](assets/authentication_system_diagram.png)
+
+
+## 🔐 Authentication Lambda
