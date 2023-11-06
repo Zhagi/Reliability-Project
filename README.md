@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  This project is a Reliability Project, completed as part of Makers Academy Bootcamp during Week 7 & 8 of the Cloud/DevOps Engineering stream.
+  This repository showcases enhancements to a veterinary hospital's HOSP system, focusing on operational integrity, enhanced reliability, and security against breaches. Leveraging a robust stack of AWS services alongside NGINX, the project ensures a balance between functionality and security. It has consistently achieved an impressive 99.98% success rate in responding to user requests.
 </p>
 
 ## 🎥 Demo Day Video and Presentation
